@@ -2,6 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
+# Create an empty list to store all the data
+all_data = []
+
 # Load the CSV file with complete links
 with open("complete_links.csv", "r") as csvfile:
     csv_reader = csv.reader(csvfile)
@@ -27,14 +30,13 @@ with open("complete_links.csv", "r") as csvfile:
                 address_locality_span = address_tag.find("span", itemprop="addressLocality")
                 address_region_span = address_tag.find("span", itemprop="addressRegion")
                 postal_code_span = address_tag.find("span", itemprop="postalCode")
-
+                
                 telephone_span = address_tag.find("span", itemprop="telephone")
-
-
+                
                 if name_span:
-                    name = name_span.text
+                    company_name = name_span.text
                 else:
-                    name = "N/A"
+                    company_name = "N/A"
 
                 if street_address_span:
                     street_address = street_address_span.text
@@ -66,9 +68,10 @@ with open("complete_links.csv", "r") as csvfile:
                 else:
                     telephone = "N/A"
 
+                
 
                 print("State:", state_code, "Page:", page)
-                print("Name:", name)
+                print("Name:", company_name)
                 print("Street Address:", street_address)
                 print("Address Locality:", address_locality)
                 print("Address Region:", address_region)
@@ -76,7 +79,29 @@ with open("complete_links.csv", "r") as csvfile:
                 print("Telephone:", telephone)
                 print("--------------------------------------------")
 
+
+                # Create a dictionary to store the data
+                data = {
+                    "Company Name": company_name,
+                    "Street Address": street_address,
+                    "Address Locality": address_locality,
+                    "Address Region": address_region,
+                    "Postal Code": postal_code,
+                    "Telephone": telephone
+                }
+
+                all_data.append(data)
+
             else:
                 print("No <address> tag found on", complete_link)
         else:
             print("Failed to fetch the page for state", state_code, "and page", page, "Status code:", response.status_code)
+
+# Save all the data to a CSV file
+with open("alaska_details.csv", "w", newline="") as csvfile:
+    fieldnames = ["Company Name", "Street Address", "Address Locality", "Address Region", "Postal Code", "Telephone"]
+    csv_writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    csv_writer.writeheader()  # Write the header row
+    csv_writer.writerows(all_data)  # Write the data rows
+
+print("Extracted data saved to extracted_data.csv")
