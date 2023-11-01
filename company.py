@@ -6,7 +6,7 @@ import csv
 all_data = []
 
 # Load the CSV file with complete links
-with open("complete_links.csv", "r") as csvfile:
+with open("alaska_links.csv", "r") as csvfile:
     csv_reader = csv.reader(csvfile)
     next(csv_reader)  # Skip the header row
 
