@@ -6,12 +6,15 @@ import csv
 all_data = []
 
 # Load the CSV file with complete links
-with open("alaska_links.csv", "r") as csvfile:
+with open("alabama_links.csv", "r") as csvfile:
     csv_reader = csv.reader(csvfile)
     next(csv_reader)  # Skip the header row
 
     for row in csv_reader:
         state_code, page, complete_link = row
+
+        if page == "100":
+            break
 
         # Fetch the HTML content of the link
         response = requests.get(complete_link)
@@ -98,10 +101,10 @@ with open("alaska_links.csv", "r") as csvfile:
             print("Failed to fetch the page for state", state_code, "and page", page, "Status code:", response.status_code)
 
 # Save all the data to a CSV file
-with open("alaska_details.csv", "w", newline="") as csvfile:
+with open("alabama_details.csv", "w", newline="") as csvfile:
     fieldnames = ["Company Name", "Street Address", "Address Locality", "Address Region", "Postal Code", "Telephone"]
     csv_writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     csv_writer.writeheader()  # Write the header row
     csv_writer.writerows(all_data)  # Write the data rows
 
-print("Extracted data saved to extracted_data.csv")
+print("Extracted data saved to alabama_details.csv")

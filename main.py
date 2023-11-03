@@ -9,14 +9,14 @@ prefix = "https://www.quicktransportsolutions.com/"
 
 # Create a dictionary where the keys are state codes and the values are the associated page numbers
 state_pages = {
-    'AK': 127,
+    # 'AK': 127,
     # 'AL': 885,
     # 'AZ': 796,
     # 'AR': 421,
     # 'CA': 8644,
     # 'CO': 1024,
     # 'CT': 432,
-    # 'DE': 161,
+    'DE': 161,
     # 'DC': 28,
     # 'FL': 4227,
     # 'GA': 2846,
@@ -107,10 +107,10 @@ for state_code, max_page in state_pages.items():
 
 
 # Save the links to a CSV file with one link per row
-with open("complete_links.csv", "w", newline="") as csvfile:
+with open("delaware_links.csv", "w", newline="") as csvfile:
     csv_writer = csv.writer(csvfile)
     csv_writer.writerow(["State", "Page", "Link"])  # Write header row
     for link_details in all_links:
         csv_writer.writerow(link_details)  # Write each link separately
 
-print("Links saved to links.csv")
+print("Links saved to alabama_links.csv")
