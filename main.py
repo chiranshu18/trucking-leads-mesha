@@ -16,7 +16,7 @@ state_pages = {
     # 'CA': 8644,
     # 'CO': 1024,
     # 'CT': 432,
-    'DE': 161,
+    # 'DE': 161,
     # 'DC': 28,
     # 'FL': 4227,
     # 'GA': 2846,
@@ -41,7 +41,7 @@ state_pages = {
     # 'NH': 166,
     # 'NJ': 1592,
     # 'NM': 340,
-    # 'NY': 2143,
+    'NY': 2143,
     # 'NC': 1626,
     # 'ND': 207,
     # 'OH': 1442,
@@ -80,7 +80,8 @@ state_pages = {
 all_links = []
 
 for state_code, max_page in state_pages.items():
-    for page in range(1, max_page + 1):
+    # for page in range(1, max_page + 1):
+    for page in range(1, 101):
         url = base_url.format(page, state_code)
 
         response = requests.get(url)
@@ -107,10 +108,10 @@ for state_code, max_page in state_pages.items():
 
 
 # Save the links to a CSV file with one link per row
-with open("delaware_links.csv", "w", newline="") as csvfile:
+with open("newYork_links.csv", "w", newline="") as csvfile:
     csv_writer = csv.writer(csvfile)
     csv_writer.writerow(["State", "Page", "Link"])  # Write header row
     for link_details in all_links:
         csv_writer.writerow(link_details)  # Write each link separately
 
-print("Links saved to alabama_links.csv")
+print("Links saved to newYork_links.csv")
