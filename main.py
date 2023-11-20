@@ -18,11 +18,11 @@ state_pages = {
     # 'CT': 432,
     # 'DE': 161,
     # 'DC': 28,
-    'FL': 4227,
+    # 'FL': 4227,
     # 'GA': 2846,
     # 'HI': 20,
     # 'ID': 315,
-    # 'IL': 1762,
+    'IL': 1762,
     # 'IN': 1114,
     # 'IA': 643,
     # 'KS': 485,
@@ -108,10 +108,10 @@ for state_code, max_page in state_pages.items():
 
 
 # Save the links to a CSV file with one link per row
-with open("florida_links.csv", "w", newline="") as csvfile:
+with open("illinois_links.csv", "w", newline="") as csvfile:
     csv_writer = csv.writer(csvfile)
     csv_writer.writerow(["State", "Page", "Link"])  # Write header row
     for link_details in all_links:
         csv_writer.writerow(link_details)  # Write each link separately
 
-print("Links saved to florida_links.csv")
+print("Links saved to illinois_links.csv")
