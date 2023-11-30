@@ -40,7 +40,7 @@ state_pages = {
     # 'NV': 355,
     # 'NH': 166,
     # 'NJ': 1592,
-    'NM': 340,
+    # 'NM': 340,
     # 'NY': 2143,
     # 'NC': 1626,
     # 'ND': 207,
@@ -54,7 +54,7 @@ state_pages = {
     # 'SD': 172,
     # 'TN': 844,
     # 'TX': 5786,
-    # 'UT': 511,
+    'UT': 511,
     # 'VT': 79,
     # 'VA': 856,
     # 'WA': 1115,
@@ -108,10 +108,10 @@ for state_code, max_page in state_pages.items():
 
 
 # Save the links to a CSV file with one link per row
-with open("newjersey_links.csv", "w", newline="") as csvfile:
+with open("utah_links.csv", "w", newline="") as csvfile:
     csv_writer = csv.writer(csvfile)
     csv_writer.writerow(["State", "Page", "Link"])  # Write header row
     for link_details in all_links:
         csv_writer.writerow(link_details)  # Write each link separately
 
-print("Links saved to newjersey_links.csv")
+print("Links saved to utah_links.csv")
